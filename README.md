@@ -14,7 +14,7 @@ Datasets are collected from my own favorite music playlists :-)
 
 ## Getting Started
 The project is hosted on the site: [mchen241.pythonanywhere.com](https://mchen241.pythonanywhere.com).<br/>
-Or you can download the repository and run app_main.py (See "Prerequisites" below):
+Or you can download the repository and run app_main.py (For requirements that need to be installed, see "Prerequisites" below):
 ```
 python app_main.py
 ```
