@@ -6,9 +6,11 @@ Web Framework: [Flask](http://flask.pocoo.org/), [jQuery](https://jquery.com/)<b
 Skills Involved: HTML, CSS, javascript, python<br/>
 
 ### Implmentation Details
-Pace, arousal and valence detection: the middle 50% of the music's raw data is splitted into 5-second frames, with a step of 0.5 seconds. Each frame is then splitted into smaller 25ms subframes that are then transformed into an array of MFCCs (Mel-frequency cepstral coefficients). Finally, the MFCC array, which is initially in matrix form, is flattened and fed into a 3-layer neural network regressor. The intention here is trying to let the neural nets captures the patterns in the changes of the MFCCs and relates the patterns with the emotions that the music represents. (an instinctive approach, more researches are needed)
+Pace, arousal and valence detection: the middle 50% of the music's raw data is splitted into 5-second frames, with a step of 0.5 seconds. Each frame is then splitted into smaller 25ms subframes that are then transformed into an array of MFCCs (Mel-frequency cepstral coefficients). Finally, the MFCC array, which is initially in matrix form, is flattened and fed into a 3-layer neural network regressor. The intention here is trying to let the neural nets captures the patterns in the changes of the MFCCs and relates the patterns with the emotions that the music represents. (an instinctive approach, more researches are needed)<br/>
 
-Genre detection: the middle 50% of the music's raw data is splitted into 20ms frames. From each of the frames, an vector of MFCC values is calculated. The mean vector and the upper part of the covariance matrix of the MFCC vectors are then taken and concatenated together into a single array, which is finally fed into a 3-layer neural network that outputs the numerical label for the predicted genre.
+Genre detection: the middle 50% of the music's raw data is splitted into 20ms frames. From each of the frames, an vector of MFCC values is calculated. The mean vector and the upper part of the covariance matrix of the MFCC vectors are then taken and concatenated together into a single array, which is finally fed into a 3-layer neural network that outputs the numerical label for the predicted genre.<br/>
+
+Datasets are collected from my own favorite music playlists :-)
 
 ## Getting Started
 The project is hosted on the site: [mchen241.pythonanywhere.com](https://mchen241.pythonanywhere.com).<br/>
@@ -25,9 +27,14 @@ scikit-learn>=0.18rc2
 scipy>=0.17.0
 numpy>=0.11.0
 flask>=0.12.2
+pydub (with libav or ffmpeg)
 ```
 
 ## Author
 Mu Chen [muchen2](https://github.com/muchen2)
 
-
+## References
+1. Music Genre Classification, cs229.stanford.edu/proj2011/HaggbladeHongKao-MusicGenreClassification.pdf
+2. http://practicalcryptography.com/miscellaneous/machine-learning/guide-mel-frequency-cepstral-coefficients-mfccs/
+3. http://www.ee.columbia.edu/ln/rosa/doc/HTKBook21/node54.html
+4. Wikipedia, https://www.wikipedia.org/
