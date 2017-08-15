@@ -69,7 +69,7 @@ Filterbank analysis is a process that simulates how human
 ears actually perceive sounds 
 (http://www.ee.columbia.edu/ln/rosa/doc/HTKBook21/node54.html)
 lower and upper are the lower and upper frequencies in hertz
-n: number of filter bank we want to generate
+n: number of filterbanks we want to generate
 """
 def gen_mel_filters (nfft, sample_rate, n = 26, lower = 300, upper = 8000):
 	lower_mel = toMel (lower)
