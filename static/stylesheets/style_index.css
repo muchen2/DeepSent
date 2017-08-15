@@ -1,0 +1,156 @@
+*{
+	margin: 0;
+	padding: 0;
+	/*border: 1px solid;*/
+}
+
+.messages {
+	color: red;
+}
+
+.alert-bar {
+	font-family: "Times New Roman", sans-serif;
+	text-align: center;
+	background: yellow;
+}
+
+.content-box {
+	width: 80%;
+	margin: auto;
+}
+
+.header {
+	width: 100%;
+}
+
+.header-img {
+	width: 100%;
+}
+
+.header-bar {
+	background: #66c2ff;
+	text-align: left;
+	padding: 5px 0px;
+}
+
+.header-text {
+	font-family: "Helvetica", "Arial", sans-serif;
+	color: rgba(255, 255, 255, 80%);
+}
+
+.upload-header, .analysis-header, .contact-header {
+	width: 100%;
+	font-family: "Georgia", serif;
+	font-size: 1.2em;
+	color: #66c2ff;
+	border-bottom: 2px solid;
+	margin-top: 50px;
+	cursor: pointer;
+}
+
+.upload-body, .analysis-body {
+	margin-top: 20px;
+}
+
+.analysis-body, .contact-body {
+	display: none;
+}
+
+.upload-filename {
+	font-family: "Georgia", serif;
+	font-weight: bold;
+	font-size: 1.5em;
+}
+
+.waveform-img {
+	width: 80%;
+	margin: auto;
+	margin-top: 20px;
+}
+
+.scale-header {
+	font-family: "Georgia", serif;
+	text-align: center;
+	padding: 10px 0px;
+}
+
+.scale-label-start {
+	font-family: "Georgia", serif;
+	display: inline-block;
+	text-align: right;
+	width: 10%;
+}
+
+.scale-label-end {
+	font-family: "Georgia", serif;
+	display: inline-block;
+	width: 10%;
+}
+
+.scale-body {
+	display: inline;
+	margin-left: 20px;
+}
+
+.ratio-label {
+	font-family: "Georgia", serif;
+	font-style: italic;
+	margin-left: 150px;
+}
+
+.genre-text {
+	margin-left: 20px;
+	font-family: "Georgia", serif;
+}
+
+.contact-text {
+	font-family: "Times New Roman", sans-serif;
+	font-size: 1em;
+	line-height: 150%;
+}
+
+table {
+	width: 100%;
+	margin-top: 15px;
+}
+
+th {
+	width: 20%;
+}
+
+/*
+Customize the range elements
+*/
+
+.scale-range {
+	width: 50%;
+}
+
+.tempo-scale, .arousal-scale, .valence-scale {
+	background: -webkit-linear-gradient(to right, lightskyblue, tomato);
+	background: -moz-linear-gradient(to right, lightskyblue, tomato);
+}
+
+.scale-range::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	background: black;
+	border-radius: 0;
+	height: 100%;
+	width: 5px;
+}
+
+.scale-range::-moz-range-thumb {
+	-moz-appearance: none;
+	background: black;
+	border-radius: 0;
+	height: 100%;
+	width: 5px;
+}
+
+.scale-range::-webkit-slider-runnable-track {
+	background: transparent;
+}
+
+.scale-range::-moz-range-track {
+	background: transparent;
+}

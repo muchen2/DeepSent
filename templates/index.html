@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DeepSent: Music Sentiment Analysis with Machine Learning Models</title>
+
+	<!-- scripts -->
+	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="{{url_for ('static', filename='scripts/script.js')}}"></script>
+	<script type="text/javascript">
+		var file_uploaded = {{file_uploaded|tojson}};
+	</script>
+
+	<!--stylesheet -->
+	<link rel="stylesheet" type="text/css" href="{{url_for ('static', filename='stylesheets/style_index.css')}}">
+</head>
+
+<body onload="onLoad()">
+	{%with messages = get_flashed_messages()%}
+	{%if messages%}
+	<ul class="messages">
+		{%for message in messages%}
+		<li>{{message}}</li>
+		{%endfor%}
+	</ul>
+	{%endif%}
+	{%endwith%}
+
+	<p class="alert-bar"></p>
+	<div class="content-box">
+	<div class="header">
+		<img class="header-img" src="{{url_for('static', filename='images/header_background.png')}}" alt="Header Image"/>
+		<div class="header-bar">
+			<h2 class="header-text"> DeepSent: Music Sentiment Analysis with Machine Learning Models </h2>
+		</div>
+	</div>
+
+	<h2 class="upload-header">Start with uploading a file  &#9650;</h2>
+	<div class="upload-body">
+		<form class="upload-form" action="/" method ="post" enctype="multipart/form-data">
+			<input type="file" name="sound_file_upload" />
+			<input type="submit" value="Confirm Upload"/>
+ 		</form>
+	</div>
+
+	<h2 class="analysis-header">Analysis Result  &#9660;</h1>
+	<div class="analysis-body">
+		<p class="upload-filename">{{upload_filename}}</p>
+
+		<table>
+			<tr>
+				<th class="scale-header">Pace (Tempo)</th>
+				<td>
+					<div class="scale-body">
+						<p class="scale-label-start">Slow</p>
+						<input class="tempo-scale scale-range" type="range" min="0" max="100" value="{{tempo_value}}" disabled/>
+						<p class="scale-label-end">Fast</p>
+						<p class="ratio-label">{{"%.2f" % pace_slow_ratio|float}}% Slow Speed, {{"%.2f" % pace_mid_ratio|float}}% Mid Speed, {{"%.2f" % pace_fast_ratio|float}}% Fast Speed</p>
+					</div>
+				</td>	
+			</tr>
+
+			<tr>
+				<th class="scale-header">Emotion Intensity (Arousal)</th>
+				<td>
+					<div class="scale-body">
+						<p class="scale-label-start">Relaxing</p>
+						<input class="arousal-scale scale-range" type="range" min="0" max="100" value="{{arousal_value}}" disabled/>
+						<p class="scale-label-end">Intense</p>
+						<p class="ratio-label">{{"%.2f" % arousal_relaxing_ratio|float}}% Relaxing, {{"%.2f" % arousal_mid_ratio|float}}% Neutral, {{"%.2f" % arousal_intense_ratio|float}}% Intense</p>
+					</div>
+				</td>
+			</tr>
+
+			<tr>
+				<th class="scale-header">Joyfulness (Valence)</th>
+				<td>
+					<div class="scale-body">
+						<p class="scale-label-start">Sad</p>
+						<input class="valence-scale scale-range" type="range" min="0" max="100" value="{{valence_value}}" disabled/>
+						<p class="scale-label-end">Happy</p>
+						<p class="ratio-label">{{"%.2f" % valence_sad_ratio|float}}% Sad, {{"%.2f" % valence_neutral_ratio|float}}% Neutral, {{"%.2f" % valence_happy_ratio|float}}% Happy</p>
+					</div>
+				</td>
+			</tr>
+
+			<tr>
+				<th class="scale-header">Genre</th>
+				<td>
+					<p class="genre-text">Best match: <b>{{best_cand}}</b>, second best match: <b>{{sec_best_cand}}</b></p>
+				</td>
+			</tr>
+
+			<!-- More to come -->
+		</table>
+		<img class="waveform-img" alt="Waveform Image">
+	</div>
+
+	<h2 class="contact-header">Contact Infos  &#9660;</h2>
+	<div class="contact-body">
+		<p class="contact-text">Author: Mu Chen<br>muchen2@illinois.edu<br>University of Illinois - Urbana Champaign</p>
+	</div>
+
+	</div>
+
+
+</body>
+
+</html>
