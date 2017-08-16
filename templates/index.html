@@ -44,7 +44,7 @@
 
 	<h2 class="analysis-header">Analysis Result  &#9660;</h1>
 	<div class="analysis-body">
-		<p class="upload-filename">{{upload_filename}}</p>
+		<p class="upload-filename"></p>
 
 		<table>
 			<tr>
@@ -52,9 +52,9 @@
 				<td>
 					<div class="scale-body">
 						<p class="scale-label-start">Slow</p>
-						<input class="tempo-scale scale-range" type="range" min="0" max="100" value="{{tempo_value}}" disabled/>
+						<input class="tempo-scale scale-range" type="range" min="0" max="100" value="0" disabled/>
 						<p class="scale-label-end">Fast</p>
-						<p class="ratio-label">{{"%.2f" % pace_slow_ratio|float}}% Slow Speed, {{"%.2f" % pace_mid_ratio|float}}% Mid Speed, {{"%.2f" % pace_fast_ratio|float}}% Fast Speed</p>
+						<p class="tempo-ratio-label ratio-label"></p>
 					</div>
 				</td>	
 			</tr>
@@ -64,9 +64,9 @@
 				<td>
 					<div class="scale-body">
 						<p class="scale-label-start">Relaxing</p>
-						<input class="arousal-scale scale-range" type="range" min="0" max="100" value="{{arousal_value}}" disabled/>
+						<input class="arousal-scale scale-range" type="range" min="0" max="100" value="0" disabled/>
 						<p class="scale-label-end">Intense</p>
-						<p class="ratio-label">{{"%.2f" % arousal_relaxing_ratio|float}}% Relaxing, {{"%.2f" % arousal_mid_ratio|float}}% Neutral, {{"%.2f" % arousal_intense_ratio|float}}% Intense</p>
+						<p class="arousal-ratio-label ratio-label"></p>
 					</div>
 				</td>
 			</tr>
@@ -76,9 +76,9 @@
 				<td>
 					<div class="scale-body">
 						<p class="scale-label-start">Sad</p>
-						<input class="valence-scale scale-range" type="range" min="0" max="100" value="{{valence_value}}" disabled/>
+						<input class="valence-scale scale-range" type="range" min="0" max="100" value="0" disabled/>
 						<p class="scale-label-end">Happy</p>
-						<p class="ratio-label">{{"%.2f" % valence_sad_ratio|float}}% Sad, {{"%.2f" % valence_neutral_ratio|float}}% Neutral, {{"%.2f" % valence_happy_ratio|float}}% Happy</p>
+						<p class="valence-ratio-label ratio-label"></p>
 					</div>
 				</td>
 			</tr>
@@ -86,7 +86,10 @@
 			<tr>
 				<th class="scale-header">Genre</th>
 				<td>
-					<p class="genre-text">Best match: <b>{{best_cand}}</b>, second best match: <b>{{sec_best_cand}}</b></p>
+					<p class="genre-label">Best match: </p>
+					<p class="genre-text best-match"></p>
+					<p class="genre-label">, second best match: </p>
+					<p class="genre-text sec-best-match"></p>
 				</td>
 			</tr>
 

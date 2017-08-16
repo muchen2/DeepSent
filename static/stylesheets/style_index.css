@@ -98,9 +98,13 @@
 	margin-left: 150px;
 }
 
+.genre-label {
+	display: inline-block;
+}
+
 .genre-text {
-	margin-left: 20px;
-	font-family: "Georgia", serif;
+	display: inline-block;
+	font-weight: bold;
 }
 
 .contact-text {
