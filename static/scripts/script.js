@@ -1,7 +1,7 @@
 var upload_div_on = true;
 var analysis_div_on = false;
 var contact_div_on = false;
-var analysis_completed = false;
+var analysis_completed = true;
 
 function onLoad () {
 	$(document).ready (function () {
@@ -11,6 +11,7 @@ function onLoad () {
 		if (file_uploaded) {
 			$(".alert-bar").text ("Analyzing...");
 			$(".alert-bar").show ();
+			$(".upload-form input").prop ("disabled", true);
 			$.post (url="/analysis", function (data) {
 				// post request succeeds
 				data_parsed = JSON.parse (data);
@@ -43,6 +44,9 @@ function onLoad () {
 				// post request fails
 				$(".alert-bar").text ("Unexpected error during analyzing the sound data");
 				$(".alert-bar").css ("background", "red");
+			}).always (function () {
+				file_uploaded = false;
+				$(".upload-form input").prop ("disabled", false);
 			});
 		}
 	});
@@ -72,7 +76,7 @@ function setHeadersOnClickEvents () {
 		});
 	});
 
-	$(document).on ("submit", ".upload-form", function () {
+	$(".upload-form").one ("submit", function (event) {
 		$(".alert-bar").show ();
 		$(".alert-bar").text ("Uploading...");
 		$(".messages").hide ();

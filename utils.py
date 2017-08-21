@@ -28,15 +28,15 @@ Compress user input's audio segment by
 	1. reducing the number of channels, if possible
 	2. reducing the sample rate, if possible
 """
-def compress_audio_segment (segment):
+def compress_audio_segment (segment, sample_rate, num_channels):
 
 	# limit the number of channels to be one
-	if segment.channels > 1:
-		segment_out = segment.set_channels (1)
+	if segment.channels > num_channels:
+		segment_out = segment.set_channels (num_channels)
 
 	# limit the segment's frame rate to be 11025
-	if segment.frame_rate > 11025:
-		segment_out = segment_out.set_frame_rate (11025)
+	if segment.frame_rate > sample_rate:
+		segment_out = segment_out.set_frame_rate (sample_rate)
 
 	return segment_out
 

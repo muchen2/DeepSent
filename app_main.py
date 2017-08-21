@@ -31,19 +31,24 @@ with open (join (curr_dir, "nnet_models/genre_classifier_" + version_code + ".pi
 
 allowed_extensions = ["wav", "mp3", "ogg", "flac", "wma", "aac"]
 imgIO = None
-wave_data = None
+wave_data_em = None
+wave_data_gn = None
 sound_filename = None
 
 nn_code_to_genre_map = {
 	0: "Western Classical",
 	1: "East Asia Classical",
-	2: "Country",
-	3: "Electronic",
-	4: "Hip-hop",
-	5: "Jazz",
-	6: "New Age",
-	7: "Rock",
-	8: "Soundtracks"
+	2: "Blues",
+	3: "Country",
+	4: "Disco",
+	5: "Hiphop",
+	6: "Jazz",
+	7: "Metal",
+	8: "Pop",
+	9: "Rock",
+	10: "Electronic",
+	11: "New Age",
+	12: "Soundtracks"
 }
 
 @app.route ("/", methods=["POST", "GET"])
@@ -65,10 +70,12 @@ def main_page ():
 			flash ("This file format is not supported")
 			return redirect (request.url)
 
-		global wave_data, sound_filename
+		global wave_data_em, wave_data_gn, sound_filename
 		aud = AudioSegment.from_file (file)
-		aud = compress_audio_segment (aud)
-		wave_data = np.asarray (aud.get_array_of_samples())
+		aud_em = compress_audio_segment (aud, 11025, 1)
+		aud_gn = compress_audio_segment (aud, 22050, 1)
+		wave_data_em = np.asarray (aud_em.get_array_of_samples())
+		wave_data_gn = np.asarray (aud_gn.get_array_of_samples())
 		sound_filename = file.filename
 
 		return render_template ("index.html", file_uploaded = True)
@@ -77,8 +84,8 @@ def main_page ():
 
 @app.route ("/analysis", methods=["POST"])
 def analysis ():
-	global wave_data
-	if wave_data is None:
+	global wave_data_em, wave_data_gn
+	if wave_data_em is None or wave_data_gn is None:
 		return "", 400
 
 	# Convert the middle 50% part of the music into MFCC arrays
@@ -90,8 +97,8 @@ def analysis ():
 	frame_length_i = int (frame_length / 1000. * 11025) # compressed format always have sample rate of 11025
 	frame_step_i = int (frame_step / 1000. * 11025)
 
-	first_quarter = int (len (wave_data) * 0.25)
-	last_quarter = int (len (wave_data) * 0.75)
+	first_quarter = int (len (wave_data_em) * 0.25)
+	last_quarter = int (len (wave_data_em) * 0.75)
 
 	if (last_quarter - first_quarter) / 11025. < 5.0:
 		# Middle section is less than 5 seconds
@@ -99,7 +106,7 @@ def analysis ():
 		flash ("The music you uploaded is too short. A length of at least 10 seconds is required")
 		return redirect (request.url)
 
-	mid_segment = wave_data[first_quarter:last_quarter]
+	mid_segment = wave_data_em[first_quarter:last_quarter]
 	num_frame = (len(mid_segment) - frame_length_i) // frame_step_i
 
 
@@ -112,7 +119,7 @@ def analysis ():
 		mfccs_mat[i] = mfccs.flatten()
 
 	# feed the data into regressors
-	pace_regressor_result = pace_regressor.predict (mfccs_mat)
+	pace_regressor_result = pace_regressor.predict (mfccs_mat) + 1.0
 	arousal_regressor_result = arousal_regressor.predict (mfccs_mat) + 1.5
 	valence_regressor_result = valence_regressor.predict (mfccs_mat) + 1.5
 
@@ -143,7 +150,10 @@ def analysis ():
 	valence_neutral_ratio = 1. - valence_happy_ratio - valence_sad_ratio
 
 	# now classify the music genre
-	mfccs_mid_segment = get_mfccs (mid_segment, sample_rate=11025, frame_length=20, frame_step=20, n_filters=20, num_coef_kept=15)
+	first_quarter = int (len(wave_data_gn) * 0.25)
+	last_quarter = int (len(wave_data_gn) * 0.75)
+	mid_segment = wave_data_gn[first_quarter:last_quarter]
+	mfccs_mid_segment = get_mfccs (mid_segment, sample_rate=22050, frame_length=20, frame_step=20, n_filters=20, num_coef_kept=15)
 	mfccs_mean = np.mean (mfccs_mid_segment, axis=0)
 	triu_indices = np.triu_indices (len (mfccs_mean))
 	cov_mat = np.cov (mfccs_mid_segment.T)
@@ -163,11 +173,11 @@ def analysis ():
 
 	# generate waveform plot
 	num_indices = 5000
-	plot_indices = np.asarray (np.linspace (0, len(wave_data) - 1, num_indices), dtype=np.int32)
+	plot_indices = np.asarray (np.linspace (0, len(wave_data_gn) - 1, num_indices), dtype=np.int32)
 	plt.figure (figsize=(8,2), dpi=80)
 	plt.title ("Waveform of " + filename)
 	plt.axis ("off")
-	plt.plot (wave_data[plot_indices])
+	plt.plot (wave_data_gn[plot_indices])
 	global imgIO
 	if imgIO is not None:
 		imgIO.close ()

@@ -36,6 +36,7 @@
 .header-text {
 	font-family: "Helvetica", "Arial", sans-serif;
 	color: rgba(255, 255, 255, 80%);
+	color: rgba(255, 255, 255, 0.8);
 }
 
 .upload-header, .analysis-header, .contact-header {
@@ -126,24 +127,27 @@ th {
 Customize the range elements
 */
 
-.scale-range {
+.score-range {
 	width: 50%;
-}
-
-.tempo-scale, .arousal-scale, .valence-scale {
-	background: -webkit-linear-gradient(to right, lightskyblue, tomato);
-	background: -moz-linear-gradient(to right, lightskyblue, tomato);
-}
-
-.scale-range::-webkit-slider-thumb {
 	-webkit-appearance: none;
+	-moz-appearance: none;
+
+	background: rgb(135,206,250); /* Old browsers */
+	background: -moz-linear-gradient(left, rgb(135,206,250) 0%, rgb(255,99,71) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(left, rgb(135,206,250) 0%,rgb(255,99,71) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to right, rgb(135,206,250) 0%,rgb(255,99,71) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#87cefa', endColorstr='#ff6347',GradientType=1 ); /* IE6-9 */
+}
+
+
+.score-range::-webkit-slider-thumb {
 	background: black;
 	border-radius: 0;
 	height: 100%;
 	width: 5px;
 }
 
-.scale-range::-moz-range-thumb {
+.score-range::-moz-range-thumb {
 	-moz-appearance: none;
 	background: black;
 	border-radius: 0;
@@ -151,10 +155,12 @@ Customize the range elements
 	width: 5px;
 }
 
-.scale-range::-webkit-slider-runnable-track {
+.score-range::-webkit-slider-runnable-track {
+	-webkit-appearance: none;
 	background: transparent;
 }
 
-.scale-range::-moz-range-track {
+.score-range::-moz-range-track {
+	-moz-appearance: none;
 	background: transparent;
 }
