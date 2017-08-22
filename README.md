@@ -8,9 +8,9 @@ Skills Involved: HTML, CSS, javascript, python<br/>
 ### Implmentation Details
 Pace, arousal and valence detection: the middle 50% of the music's raw data is splitted into 5-second frames, with a step of 0.5 seconds. Each frame is then splitted into smaller 25ms subframes that are then transformed into an array of MFCCs (Mel-frequency cepstral coefficients). Finally, the MFCC array, which is initially in matrix form, is flattened and fed into a 3-layer neural network regressor. The intention here is trying to let the neural nets capture the patterns in the changes of the MFCCs and relates the patterns with the emotions that the music represents. (an instinctive approach, more researches are needed)<br/>
 
-Genre detection: the middle 50% of the music's raw data is splitted into 20ms frames. From each of the frames, an vector of MFCC values is calculated. The mean vector and the upper part of the covariance matrix of the MFCC vectors are then taken and concatenated together into a single array, which is finally fed into a 3-layer neural network that outputs the numerical label for the predicted genre.<br/>
+Genre detection: the middle 50% of the music's raw data is splitted into 20ms frames. From each of the frames, an vector of MFCC values is calculated. The mean vector and the upper part of the covariance matrix of the MFCC vectors are then taken and concatenated together into a single array, which is finally fed into a 6-layer neural network that outputs the numerical label for the predicted genre.<br/>
 
-Datasets are collected from my own favorite music playlists :-)
+Datasets: GTZAN Music Genre Dataset + music files collected from my own favorite playlists for added genres (East Asia Classical, Electronic, New Age and Soundtracks)   
 
 ## Getting Started
 The project is hosted on the site: [mchen241.pythonanywhere.com](https://mchen241.pythonanywhere.com).<br/>
