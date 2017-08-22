@@ -36,7 +36,11 @@ function onLoad () {
 
 				$(".analysis-header").css ("color", "#66c2ff");
 				setAnalysisHeaderOnClickEvents ();
-				$(".analysis-body").slideDown ("slow");
+				$(".analysis-body").slideDown ("slow", function () {
+					analysis_div_on = true;
+					$(".analysis-header").text ("Analysis Result  \u25b2");
+				});
+
 				$(".waveform-img").attr ("src", "/waveform_image?" + (new Date()).getTime());
 				$(".alert-bar").hide ()
 
