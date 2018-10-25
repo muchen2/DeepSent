@@ -13,7 +13,7 @@ Genre detection: the middle 50% of the music's raw data is splitted into 20ms fr
 Datasets: GTZAN Music Genre Dataset + music files collected from my own favorite playlists for added genres (East Asia Classical, Electronic, New Age and Soundtracks)   
 
 ## Getting Started
-The project is hosted on the site: [mchen241.pythonanywhere.com](https://mchen241.pythonanywhere.com).<br/>
+The project is hosted on the site: [mchen241.pythonanywhere.com](~~https://mchen241.pythonanywhere.com~~). (Expired)<br/>
 Or you can download the repository and run app_main.py (For requirements that need to be installed, see "Prerequisites" below):
 ```
 python app_main.py
