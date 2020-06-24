@@ -1,6 +1,5 @@
 # DeepSent
 ## Project Description
-This is a student project made solely for fun.<br/>
 This project will analyze the user-uploaded music files based on the arousal-valence emotion model (aka [Circumplex model](https://en.wikipedia.org/wiki/Emotion_classification)). Arousal represents how intense or "stimulating" the music is to the human ears, ranging from a plain and relaxing feeling to a strong and arousing feeling. Valence here describes how delightful or how sad the music sounds like. This definition is narrower than the one presented in [wikipedia](https://en.wikipedia.org/wiki/Valence_(psychology)), but is easier for the machine learning models to classify. Besides, the project also implemented the functionalities of pace detection and music genre detection.<br/>
 Web Framework: [Flask](http://flask.pocoo.org/), [jQuery](https://jquery.com/)<br/>
 Skills Involved: HTML, CSS, javascript, python<br/>
